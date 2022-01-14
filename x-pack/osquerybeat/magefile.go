@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/magefile/mage/mg"
+	"github.com/magefile/mage/sh"
 
 	devtools "github.com/elastic/beats/v7/dev-tools/mage"
 	osquerybeat "github.com/elastic/beats/v7/x-pack/osquerybeat/scripts/mage"
@@ -32,6 +33,15 @@ import (
 func init() {
 	devtools.BeatDescription = "Osquerybeat is a beat implementation for osquery."
 	devtools.BeatLicense = "Elastic License"
+}
+
+func Merge() {
+	sh.RunV("lipo",
+		"-create",
+		"-output", "./build/golang-crossbuild/osquery-extension-darwin-universal",
+		"./build/golang-crossbuild/osquery-extension-darwin-arm64",
+		"./build/golang-crossbuild/osquery-extension-darwin-amd64",
+	)
 }
 
 func Check() error {
