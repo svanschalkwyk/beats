@@ -142,7 +142,7 @@ If Elasticsearch is running on a different host, then you can use the `ES_URL` v
 
 [source,shell]
 -------------------------------
-ES_URL="http://192.168.3.206:9200" make import-dashboards
+ES_URL="http://192.168.3.206:9200" make beats-dashboards
 -------------------------------
 
 [[import-dashboard-options]]
